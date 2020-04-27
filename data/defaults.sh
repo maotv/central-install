@@ -1,0 +1,5 @@
+PANOO_ROOT="/panoo"
+PANOO_USER="panoo"
+PANOO_PASS=""
+PANOO_INSTANCE="panoo"
+PANOO_ADMIN="admin@panoo.com"

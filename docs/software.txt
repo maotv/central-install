@@ -1,0 +1,10 @@
+The following software packages need to be installed 
+on this machine:
+
+ - mariadb-server
+ - phpmyadmin
+ - git
+
+This script will try to install them 
+via 'apt'. If you would rather install them manually,
+please choose 'skip' on the next screen.
