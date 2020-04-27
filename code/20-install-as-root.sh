@@ -1,7 +1,7 @@
 #!/bin/bash
 # read config file given as argument
 . $1/temp/panoo.sh
-
+TEMP=$1/temp
 
 WT="whiptail"
 SSIZE="7 72"
@@ -64,9 +64,10 @@ if ($WT --yes-button "Create" --no-button "Skip" --yesno "Create Database User '
 
 	# RND=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -n 1)	
 	DBPASS=$PANOO_PASS # $($WT --inputbox "Enter new database password for user '$PANOO_USER'" $SSIZE $RND 3>&1 1>&2 2>&3)
+	echo "CREATE USER '$PANOO_USER'@'localhost' IDENTIFIED BY '$DBPASS';"
 	echo "CREATE USER '$PANOO_USER'@'localhost' IDENTIFIED BY '$DBPASS';" | mysql -u root > mysql.out 2>&1
 	echo "GRANT ALL PRIVILEGES ON *.* TO '$PANOO_USER'@'localhost';" | mysql -u root >> mysql.out 2>&1
-	echo "CREATE DATABASE '$PANOO_INSTANCE';" | mysql -u root >> mysql.out 2>&1
+	echo "CREATE DATABASE $PANOO_INSTANCE;" | mysql -u root >> mysql.out 2>&1
 	$WT --textbox mysql.out $LSIZE
 
 	echo "[client]" > $PANOO_HOME/.my.cnf

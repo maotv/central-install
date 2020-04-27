@@ -1,0 +1,2 @@
+ERROR 1396 (HY000) at line 1: Operation CREATE USER failed for 'panoof'@'localhost'
+ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''panoof'' at line 1
