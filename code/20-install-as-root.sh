@@ -18,7 +18,7 @@ $WT --textbox text/software.txt $LSIZE
 
 # Ask about Software Installation
 if ($WT --yes-button "Install" --no-button "Skip" --yesno "Install required software packages?" $SSIZE); then
-    apt -y install mariadb-server phpmyadmin git whois
+    apt -y install mariadb-server git whois
 else
     echo "User selected No, exit status was $?."
 fi
@@ -43,8 +43,8 @@ if [ $IDTEST -eq 0 ]; then
 	$WT --msgbox "User '$PANOO_USER' exists with id #$USERID" $SSIZE
 else
 	echo "create user"
-	PASS=$($WT --inputbox "Enter new password for user '$PANOO_USER'" $SSIZE 3>&1 1>&2 2>&3)
-	CRYPT=$(echo "$PASS" | mkpasswd --stdin)
+	# PASS=$($WT --inputbox "Enter new password for user '$PANOO_USER'" $SSIZE 3>&1 1>&2 2>&3)
+	CRYPT=$(echo "$PANOO_PASS" | mkpasswd --stdin)
 	useradd -m "$PANOO_USER" -U -p "$CRYPT"
 fi
 
@@ -62,8 +62,8 @@ PANOO_HOME=$( getent passwd "$PANOO_USER" | cut -d: -f6 )
 
 if ($WT --yes-button "Create" --no-button "Skip" --yesno "Create Database User '$PANOO_USER'?" $SSIZE); then
 
-	RND=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -n 1)	
-	DBPASS=$($WT --inputbox "Enter new database password for user '$PANOO_USER'" $SSIZE $RND 3>&1 1>&2 2>&3)
+	# RND=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -n 1)	
+	DBPASS=$PANOO_PASS # $($WT --inputbox "Enter new database password for user '$PANOO_USER'" $SSIZE $RND 3>&1 1>&2 2>&3)
 	echo "CREATE USER '$PANOO_USER'@'localhost' IDENTIFIED BY '$DBPASS';" | mysql -u root > mysql.out 2>&1
 	echo "GRANT ALL PRIVILEGES ON *.* TO '$PANOO_USER'@'localhost';" | mysql -u root >> mysql.out 2>&1
 	echo "CREATE DATABASE '$PANOO_INSTANCE';" | mysql -u root >> mysql.out 2>&1

@@ -19,50 +19,47 @@ else
 fi
 
 PANOO_USER=$($WT $NEXTEXIT --inputbox "Please enter the username for the installation" 10 78 "$PANOO_USER" 3>&1 1>&2 2>&3)
-if [ $? = 0 ]; then
+if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $PANOO_USER"
 else
     exit 1
 fi
 
-PANOO_ROOT=$($WT --inputbox "The PanooCentral Root Directory" 10 78 "$PANOO_ROOT" 3>&1 1>&2 2>&3)
-if [ $? = 0 ]; then
+PANOO_ROOT=$($WT $NEXTEXIT --inputbox "The PanooCentral Root Directory" 10 78 "$PANOO_ROOT" 3>&1 1>&2 2>&3)
+if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $PANOO_USER"
 else
     exit 1
 fi
 
-PANOO_INSTANCE=$($WT --inputbox "The PanooCentral Instance Name" 10 78 "$PANOO_INSTANCE" 3>&1 1>&2 2>&3)
-if [ $? = 0 ]; then
+PANOO_INSTANCE=$($WT $NEXTEXIT --inputbox "The PanooCentral Instance Name" 10 78 "$PANOO_INSTANCE" 3>&1 1>&2 2>&3)
+if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $PANOO_USER"
 else
     exit 1
 fi
 
-PANOO_ADMIN=$($WT --inputbox "The PanooCentral Administrator Email" 10 78 "$PANOO_ADMIN" 3>&1 1>&2 2>&3)
-if [ $? = 0 ]; then
+PANOO_ADMIN=$($WT $NEXTEXIT --inputbox "The PanooCentral Administrator Email" 10 78 "$PANOO_ADMIN" 3>&1 1>&2 2>&3)
+if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $PANOO_USER"
 else
     exit 1
 fi
 
 RAND=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 8 | head -n 1)
-MULTIPASS=$($WT --inputbox "The Password for User and Database" 10 78 $RAND 3>&1 1>&2 2>&3)
-if [ $? = 0 ]; then
+MULTIPASS=$($WT $NEXTEXIT --inputbox "The Password for User and Database" 10 78 $RAND 3>&1 1>&2 2>&3)
+if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $MULTIPASS"
 else
     exit 1
 fi
 
-PANOO_INSTCODE=$($WT --inputbox "The Panoo-Install-Code" 10 78 "$PANOO_INSTCODE" 3>&1 1>&2 2>&3)
+PANOO_INSTCODE=$($WT $NEXTEXIT --inputbox "The Panoo-Install-Code" 10 78 "$PANOO_INSTCODE" 3>&1 1>&2 2>&3)
 if [ $? = 0 ]; then
     echo "User selected Ok and entered $PANOO_INSTCODE"
 else
     exit 1
 fi
-
-
-
 
 
 

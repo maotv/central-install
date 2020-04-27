@@ -11,6 +11,8 @@ TS=`date +%Y%m%d-%H%M%S`
 
 # download to temp
 # curl https://panoo.com/download/central/panoo-central.aii992.tar.gz --output temp/central.tgz
+mkdir -p $TEMP/files
+
 if [ ! -f $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz ]; then
 	curl https://panoo.com/download/central/panoo-central.$PANOO_INSTCODE.tar.gz --output $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz 2>&1 \
 		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Progress" 20 64 0
@@ -22,5 +24,5 @@ if [ -d $PANOO_ROOT/central ]; then
 fi
 
 # extract 'central' directory into PANOO_ROOT
-sudo -u $PANOO_USER tar xf $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz --directory $PANOO_ROOT
+tar xf $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz --directory $PANOO_ROOT
 
