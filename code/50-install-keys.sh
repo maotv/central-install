@@ -7,13 +7,16 @@ TEMP=$INST/temp
 
 . $INST/temp/panoo.sh
 
+
+if [ ! -f $TEMP/files/panoo-keypack.$PANOO_INSTCODE.tar.gz ]; then
+	curl https://panoo.com/download/central/panoo-keypack.$PANOO_INSTCODE.tar.gz --output $TEMP/files/panoo-keypack.$PANOO_INSTCODE.tar.gz
+fi
+
 if [ ! -d $TEMP/certs ]; then
     tar xf $TEMP/files/panoo-keypack.$PANOO_INSTCODE.tar.gz --directory $TEMP
 fi
 
 KEYPACK="$TEMP/certs"
-#   cp $KEYPACK/panoo-root-ca.cert 
-
 
 PANOO_CA="$PANOO_ROOT/ca"
 mkdir -p "$PANOO_CA"
