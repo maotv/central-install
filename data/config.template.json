@@ -21,8 +21,8 @@
             "user": "%%PANOO_USER%%",
             "password": "%%PANOO_PASS%%"
     },
-    "keyFile": "",
-    "certFile": "",
+    "keyFile": "%%PANOO_ROOT%%/ca/private/%%PANOO_HOST%%.key.pem",
+    "certFile": "%%PANOO_ROOT%%/ca/certs/%%PANOO_HOST%%.cert.pem",
     "resolveHomeComputerScript": "",
     "boxDefaultPath": "",
     "iconPainter": "localhost:8080"

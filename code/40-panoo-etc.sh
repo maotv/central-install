@@ -25,6 +25,7 @@ cp $INST/data/config.template.json $TEMP/central.json
 
 sed -i "s|%%PANOO_ROOT%%|$PANOO_ROOT|" $TEMP/central.json
 sed -i "s|%%PANOO_USER%%|$PANOO_USER|" $TEMP/central.json
+sed -i "s|%%PANOO_HOST%%|$PANOO_HOST|" $TEMP/central.json
 sed -i "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
 sed -i "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
 
