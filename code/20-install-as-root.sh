@@ -130,26 +130,4 @@ else
 fi
 
 
-# =============================================================
-#
-# Service
-#
-# =============================================================
-SERVICE="$INSTALL_ROOT/temp/panoo-central.service"
-
-echo "[Unit]" >> $SERVICE
-echo "Description=Panoo Central" >> $SERVICE
-echo "" >> $SERVICE
-echo "[Service]" >> $SERVICE
-echo "ExecStart=$PANOO_ROOT/central/index.js" >> $SERVICE
-echo "Restart=always" >> $SERVICE
-echo "User=$PANOO_USER" >> $SERVICE
-echo "# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'" >> $SERVICE
-echo "Group=nogroup" >> $SERVICE
-echo "Environment=PATH=/usr/bin:/usr/local/bin:/bin" >> $SERVICE
-echo "#Environment=NODE_ENV=production" >> $SERVICE
-echo "WorkingDirectory=$PANOO_ROOT/central" >> $SERVICE
-echo "[Install]" >> $SERVICE
-echo "WantedBy=multi-user.target" >> $SERVICE
-
 

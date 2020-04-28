@@ -17,3 +17,4 @@ sudo -u $PANOO_USER ./code/30-unpack-central.sh $ROOT || exit 1
 sudo -u $PANOO_USER ./code/40-panoo-etc.sh $ROOT || exit 1
 sudo -u $PANOO_USER ./code/50-install-keys.sh $ROOT || exit 1
 
+./code/90-start-service.sh $ROOT || exit 1

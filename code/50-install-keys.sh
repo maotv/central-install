@@ -1,11 +1,16 @@
 #!/bin/bash
-if [ -z "$1" ]; then echo "no dir given"; exit 1; fi
+# read config file given as argument
+INSTALL_ROOT=$1
+if [ -z "$INSTALL_ROOT" ]; then
+	echo "INSTALL_ROOT not given as argument."
+	exit 1	
+fi
+
+INST=$INSTALL_ROOT
+TEMP=$INSTALL_ROOT/temp
+source $TEMP/panoo.sh
+
 WT="whiptail --backtitle PanooCentral"
-
-INST=$1
-TEMP=$INST/temp
-
-. $INST/temp/panoo.sh
 
 
 if [ ! -f $TEMP/files/panoo-keypack.$PANOO_INSTCODE.tar.gz ]; then
