@@ -8,12 +8,18 @@ TEMP=$INST/temp
 
 PANOO_ETC="$PANOO_ROOT/etc"
 if [ -d $PANOO_ETC ]; then
-	whiptail --msgbox "$PANOO_ETC exists. Will not change anything." 10 64
-	exit 1
+	whiptail --msgbox "$PANOO_ETC exists. Will not change existing files." 10 64
+else 
+	mkdir $PANOO_ETC
 fi
 
-mkdir $PANOO_ETC
-cp $TEMP/panoo.sh $PANOO_ETC
+if [ ! -f "$PANOO_ETC/panoo.sh" ]; then
+	cp $TEMP/panoo.sh $PANOO_ETC
+fi
+
+if [ ! -f "$PANOO_ETC/id_central" ]; then
+	ssh-keygen -q -t rsa -b 2048 -m PEM -N "" -C "PanooCentral" -f "$PANOO_ETC/id_central"
+fi
 
 cp $INST/data/config.template.json $TEMP/central.json
 
@@ -22,4 +28,6 @@ sed -i "s|%%PANOO_USER%%|$PANOO_USER|" $TEMP/central.json
 sed -i "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
 sed -i "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
 
-cp $TEMP/central.json $PANOO_ROOT/etc/central.json
+if [ ! -f "$PANOO_ETC/central.json" ]; then
+	cp "$TEMP/central.json" "$PANOO_ETC/etc/central.json"
+fi

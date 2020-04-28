@@ -24,7 +24,7 @@ $WT --textbox text/software.txt $LSIZE
 
 # Ask about Software Installation
 if ($WT --yes-button "Install" --no-button "Skip" --yesno "Install required software packages?" $SSIZE); then
-    apt -y install mariadb-server git whois
+    apt -y install mariadb-server git curl whois
 else
     echo "User selected No, exit status was $?."
 fi
