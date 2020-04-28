@@ -29,13 +29,20 @@ mkdir -p "$PANOO_CA/crl"
 mkdir -p "$PANOO_CA/newcerts"
 mkdir -p "$PANOO_CA/private"
 mkdir -p "$PANOO_CA/temp"
+mkdir -p "$PANOO_CA/bin"
+
+cp "$INST/data/ca-build-server.sh" "$PANOO_CA/bin"
+chmod 755 "$INST/data/ca-build-server.sh"
 
 cp "$KEYPACK/customer-ca.cert.pem" "$PANOO_CA"
 cp "$KEYPACK/customer-ca.key.pem" "$PANOO_CA/private"
-cp "$INST/data/intermed-ca.cnf" "$PANOO_CA/customer-ca.cnf"
+cp "$INST/data/customer-ca.cnf" "$PANOO_CA/customer-ca.cnf"
+cp "$INST/data/server.template.cnf" "$PANOO_CA/server.template.cnf"
 
 sed -i "s|%%PANOO_CUSTOMER%%|xxxxxxxxxxcustomerxxxxxxxxx|" $PANOO_CA/customer-ca.cnf
 
-
+echo "Panoo Root is $PANOO_ROOT"
+export PANOO_ROOT=$PANOO_ROOT
+$PANOO_CA/bin/ca-build-server.sh "$PANOO_ROOT"
 
 

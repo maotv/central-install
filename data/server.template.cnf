@@ -1,0 +1,41 @@
+
+
+#
+# Above, variables TARGET, CN and CA_HOME must be defined
+#
+
+# OpenSSL configuration for generation of server certificate requests.
+# Environment variable '$CN' **MUST** be defined or else OpenSSL aborts.
+
+# TARGET                        = .
+# RANDFILE                    = $ENV::HOME/.rnd
+oid_section                 = new_oids
+
+[ new_oids ]
+id-on-xmppAddr              = 1.3.6.1.5.5.7.8.5
+id-on-dnsSRV                = 1.3.6.1.5.5.7.8.7
+
+[ req ]
+default_bits                = 3072
+default_keyfile             = ${CA_HOME}/private/${CN}.key.pem
+encrypt_key                 = no
+default_md                  = sha256
+req_extensions              = req_extensions
+prompt                      = no
+distinguished_name          = req_distinguished_name
+
+[ req_extensions ]
+keyUsage                    = digitalSignature, keyEncipherment
+extendedKeyUsage            = serverAuth, clientAuth
+subjectKeyIdentifier        = hash
+subjectAltName              = @subj_alt_names
+
+[ req_distinguished_name ]
+commonName                  = ${CN}
+
+[ subj_alt_names ]
+DNS.0                       = ${CN}
+DNS.1                       = *.${CN}
+otherName.0                 = id-on-xmppAddr;FORMAT:UTF8,UTF8:${CN}
+otherName.1                 = id-on-dnsSRV;IA5STRING:_xmpp-client.${CN}
+otherName.2                 = id-on-dnsSRV;IA5STRING:_xmpp-server.${CN}

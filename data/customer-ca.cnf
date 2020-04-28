@@ -17,22 +17,22 @@ dnsSRV            = 1.3.6.1.5.5.7.8.7
 #
 # Default Certification Authority
 [ ca ]
-default_ca              = intermed_ca
+default_ca              = customer_ca
 
 #
 # Intermediate Certification Authority
-[ intermed_ca ]
+[ customer_ca ]
 dir                     = $ENV::CA_HOME
 certs                   = $dir/certs
-serial                  = $dir/temp/intermed-ca.serial
-database                = $dir/temp/intermed-ca.index
+serial                  = $dir/temp/customer-ca.serial
+database                = $dir/temp/customer-ca.index
 new_certs_dir           = $dir/newcerts
-certificate             = $dir/intermed-ca.cert.pem
-private_key             = $dir/private/intermed-ca.key.pem
+certificate             = $dir/customer-ca.cert.pem
+private_key             = $dir/private/customer-ca.key.pem
 default_days            = 730 # Two years
-crl                     = $dir/crl/intermed-ca.crl
+crl                     = $dir/crl/customer-ca.crl
 crl_dir                 = $dir/crl
-crlnumber               = $dir/temp/intermed-ca.crlnum
+crlnumber               = $dir/temp/customer-ca.crlnum
 name_opt                = multiline, align
 cert_opt                = no_pubkey
 copy_extensions         = copy
@@ -70,7 +70,7 @@ emailAddress            = supplied
 # Intermediate CA request options
 [ req ]
 default_bits            = 3072
-default_keyfile         = private/intermed-ca.key.pem
+default_keyfile         = private/customer-ca.key.pem
 encrypt_key             = no
 default_md              = sha256
 string_mask             = utf8only
