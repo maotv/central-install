@@ -29,5 +29,5 @@ sed -i "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
 sed -i "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
 
 if [ ! -f "$PANOO_ETC/central.json" ]; then
-	cp "$TEMP/central.json" "$PANOO_ETC/etc/central.json"
+	cp "$TEMP/central.json" "$PANOO_ETC/central.json"
 fi
