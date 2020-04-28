@@ -50,4 +50,4 @@ echo "Panoo Root is $PANOO_ROOT"
 export PANOO_ROOT=$PANOO_ROOT
 $PANOO_CA/bin/ca-build-server.sh "$PANOO_ROOT"
 
-
+exit 0

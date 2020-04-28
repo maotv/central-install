@@ -11,6 +11,10 @@ fi
 TEMP=$INSTALL_ROOT/temp
 source $TEMP/panoo.sh
 
+WT="whiptail --backtitle PanooCentral"
+
+
+
 
 # =============================================================
 #
@@ -37,4 +41,6 @@ echo "WantedBy=multi-user.target" >> $SERVICE
 cp "$TEMP/panoo-central.service" "/etc/systemd/system/panoo-central.service"
 chmod 644 /etc/systemd/system/panoo-central.service
 
+
+$WT --msgbox "PanooCentral is ready to go." 20 78
 systemctl start panoo-central
