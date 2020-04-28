@@ -32,6 +32,26 @@ fi
 
 # =============================================================
 #
+# Panoo User
+#
+# =============================================================
+USERID=`id -u $PANOO_USER`
+IDTEST=$?
+
+if [ $IDTEST -eq 0 ]; then
+	$WT --msgbox "User '$PANOO_USER' exists with id #$USERID" $SSIZE
+else
+	echo "create user"
+	# PASS=$($WT --inputbox "Enter new password for user '$PANOO_USER'" $SSIZE 3>&1 1>&2 2>&3)
+	CRYPT=$(echo "$PANOO_PASS" | mkpasswd --stdin)
+	useradd -m "$PANOO_USER" -U -p "$CRYPT"
+fi
+
+PANOO_HOME=$( getent passwd "$PANOO_USER" | cut -d: -f6 )
+
+
+# =============================================================
+#
 # Panoo Root
 #
 # =============================================================
@@ -79,24 +99,6 @@ ln -s $PANOO_ROOT/node/current/bin/npm /usr/local/bin/npm
 ln -s $PANOO_ROOT/node/current/bin/npx /usr/local/bin/npx
 
 
-# =============================================================
-#
-# Panoo User
-#
-# =============================================================
-USERID=`id -u $PANOO_USER`
-IDTEST=$?
-
-if [ $IDTEST -eq 0 ]; then
-	$WT --msgbox "User '$PANOO_USER' exists with id #$USERID" $SSIZE
-else
-	echo "create user"
-	# PASS=$($WT --inputbox "Enter new password for user '$PANOO_USER'" $SSIZE 3>&1 1>&2 2>&3)
-	CRYPT=$(echo "$PANOO_PASS" | mkpasswd --stdin)
-	useradd -m "$PANOO_USER" -U -p "$CRYPT"
-fi
-
-PANOO_HOME=$( getent passwd "$PANOO_USER" | cut -d: -f6 )
 
 
 # =============================================================
