@@ -32,6 +32,22 @@ fi
 
 # =============================================================
 #
+# Panoo Root
+#
+# =============================================================
+
+if [ -d "$PANOO_ROOT" ]; then
+	$WT --msgbox "Directory '$PANOO_ROOT' exists. Please check ownership manually." $SSIZE
+else
+	echo "create root"
+	mkdir -p "$PANOO_ROOT"
+	chown $PANOO_USER:$PANOO_USER "$PANOO_ROOT"
+fi
+
+
+
+# =============================================================
+#
 # node.js & npm
 #
 # =============================================================
@@ -109,20 +125,6 @@ if ($WT --yes-button "Create" --no-button "Skip" --yesno "Create Database User '
 
 else
     echo "User selected No, exit status was $?."
-fi
-
-# =============================================================
-#
-# Panoo Root
-#
-# =============================================================
-
-if [ -d "$PANOO_ROOT" ]; then
-	$WT --msgbox "Directory '$PANOO_ROOT' exists. Please check ownership manually." $SSIZE
-else
-	echo "create root"
-	mkdir -p "$PANOO_ROOT"
-	chown $PANOO_USER:$PANOO_USER "$PANOO_ROOT"
 fi
 
 
