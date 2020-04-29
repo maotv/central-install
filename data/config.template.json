@@ -2,14 +2,14 @@
     "panooRoot": "%%PANOO_ROOT%%",
     "port": 8088,
     "sslPort": 8089,
-    "centralHost": "https://hhlokpanoo-01.srv.ndr-net.de:8089",
-    "ntpServer": "timeserver.srv.ndr-net.de",
+    "centralHost": "%%PANOO_HOST%%",
+    "ntpServer": "%%PANOO_HOST%%",
     "mail": {
-            "sender": "pin@example.org",
-            "user": "user",
-            "pass": "password",
+            "sender": "PanooCentral",
+            "user": "panoo.central@gmail.com",
+            "pass": "%%PANOO_MAILPASS%%",
             "smtp": {
-                    "host": "example.org",
+                    "host": "smtp.google.com",
                     "port": 25
             }
     },

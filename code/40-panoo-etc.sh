@@ -28,6 +28,7 @@ sed -i "s|%%PANOO_USER%%|$PANOO_USER|" $TEMP/central.json
 sed -i "s|%%PANOO_HOST%%|$PANOO_HOST|" $TEMP/central.json
 sed -i "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
 sed -i "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
+sed -i "s|%%PANOO_MAILPASS%%|$PANOO_MAILPASS|" $TEMP/central.json
 
 if [ ! -f "$PANOO_ETC/central.json" ]; then
 	cp "$TEMP/central.json" "$PANOO_ETC/central.json"
