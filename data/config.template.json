@@ -5,11 +5,11 @@
     "centralHost": "%%PANOO_HOST%%",
     "ntpServer": "%%PANOO_HOST%%",
     "mail": {
-            "sender": "PanooCentral",
-            "user": "panoo.central@gmail.com",
+            "sender": "PanooCentral <central@panoo.tv>",
+            "user": "AKIAUTMMKI6YMRYXBGO2",
             "pass": "%%PANOO_MAILPASS%%",
             "smtp": {
-                    "host": "smtp.google.com",
+                    "host": "email-smtp.eu-central-1.amazonaws.com",
                     "port": 25
             }
     },
