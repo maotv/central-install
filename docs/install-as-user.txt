@@ -1,0 +1,16 @@
+Warning!
+
+You are not installing PanooCentral with superuser privileges.
+This is ok for developer installations or tests. This installer
+will not be able to install the database and other software
+dependencies. So please make sure you have manually provided 
+the following:
+
+- a mariadb database
+- a ~/.my.cnf file with database credentials
+- curl
+- whiptail (mac: "brew install newt")
+- coreutils brew install coreutils
+- node / npm
+
+Please proceed only if you know what you are doing.

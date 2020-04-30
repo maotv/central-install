@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "# install part $0 $1"
 [ "$UID" -eq 0 ] || { echo "This script must be run as root."; exit 1; }
 
 # read config file given as argument

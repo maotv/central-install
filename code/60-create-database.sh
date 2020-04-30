@@ -1,5 +1,6 @@
 #!/bin/bash
 # read config file given as argument
+echo "# install part $0 $1"
 INSTALL_ROOT=$1
 if [ -z "$INSTALL_ROOT" ]; then
 	echo "INSTALL_ROOT not given as argument."

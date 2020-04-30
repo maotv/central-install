@@ -6,11 +6,11 @@
     "ntpServer": "%%PANOO_HOST%%",
     "mail": {
             "sender": "PanooCentral <central@panoo.tv>",
-            "user": "AKIAUTMMKI6YMRYXBGO2",
+            "user": "%%PANOO_MAILUSER%%",
             "pass": "%%PANOO_MAILPASS%%",
             "smtp": {
                     "host": "email-smtp.eu-central-1.amazonaws.com",
-                    "port": 25
+                    "port": 465
             }
     },
     "database": {

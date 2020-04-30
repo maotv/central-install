@@ -1,10 +1,9 @@
 #!/bin/bash
-if [ -z "$1" ]; then echo "no dir given"; exit 1; fi
-
-INST=$1
-TEMP=$INST/temp
-
-. $INST/temp/panoo.sh
+echo "# install part $0 $1"
+INSTALL_ROOT=$1
+if [ -z "$INSTALL_ROOT" ]; then echo "INSTALL_ROOT missing"; exit 1; fi
+source $INSTALL_ROOT/temp/panoo.sh
+source $INSTALL_ROOT/temp/secrets/about.sh
 
 PANOO_ETC="$PANOO_ROOT/etc"
 if [ -d $PANOO_ETC ]; then
@@ -14,21 +13,22 @@ else
 fi
 
 if [ ! -f "$PANOO_ETC/panoo.sh" ]; then
-	cp $TEMP/panoo.sh $PANOO_ETC
+	cp $TEMP/panoo.sh $PANOO_ETC # FIXME remove passwords, install data
 fi
 
 if [ ! -f "$PANOO_ETC/id_central" ]; then
 	ssh-keygen -q -t rsa -b 2048 -m PEM -N "" -C "PanooCentral" -f "$PANOO_ETC/id_central"
 fi
 
-cp $INST/data/config.template.json $TEMP/central.json
+cp $INSTALL_ROOT/data/config.template.json $TEMP/central.json
 
-sed -i "s|%%PANOO_ROOT%%|$PANOO_ROOT|" $TEMP/central.json
-sed -i "s|%%PANOO_USER%%|$PANOO_USER|" $TEMP/central.json
-sed -i "s|%%PANOO_HOST%%|$PANOO_HOST|" $TEMP/central.json
-sed -i "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
-sed -i "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
-sed -i "s|%%PANOO_MAILPASS%%|$PANOO_MAILPASS|" $TEMP/central.json
+sed -i "" "s|%%PANOO_ROOT%%|$PANOO_ROOT|" $TEMP/central.json
+sed -i "" "s|%%PANOO_USER%%|$PANOO_USER|" $TEMP/central.json
+sed -i "" "s|%%PANOO_HOST%%|$PANOO_HOST|" $TEMP/central.json
+sed -i "" "s|%%PANOO_INSTANCE%%|$PANOO_INSTANCE|" $TEMP/central.json
+sed -i "" "s|%%PANOO_PASS%%|$PANOO_PASS|" $TEMP/central.json
+sed -i "" "s|%%PANOO_MAILUSER%%|$PANOO_MAILUSER|" $TEMP/central.json
+sed -i "" "s|%%PANOO_MAILPASS%%|$PANOO_MAILPASS|" $TEMP/central.json
 
 if [ ! -f "$PANOO_ETC/central.json" ]; then
 	cp "$TEMP/central.json" "$PANOO_ETC/central.json"

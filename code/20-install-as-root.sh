@@ -1,13 +1,8 @@
 #!/bin/bash
-# read config file given as argument
+echo "# install part $0 $1"
 INSTALL_ROOT=$1
-if [ -z "$INSTALL_ROOT" ]; then
-	echo "INSTALL_ROOT not given as argument."
-	exit 1	
-fi
-
-. $INSTALL_ROOT/temp/panoo.sh
-TEMP=$INSTALL_ROOT/temp
+if [ -z "$INSTALL_ROOT" ]; then echo "INSTALL_ROOT missing"; exit 1; fi
+source $INSTALL_ROOT/temp/panoo.sh
 
 WT="whiptail"
 SSIZE="7 72"
@@ -20,7 +15,7 @@ CHOWN="chown $PANOO_USER:$PANOO_USER"
 # Software Packages (mariadb, phpmyadmin, ...)
 #
 # =============================================================
-$WT --textbox text/software.txt $LSIZE
+# $WT --textbox text/software.txt $LSIZE
 
 # Ask about Software Installation
 if ($WT --yes-button "Install" --no-button "Skip" --yesno "Install required software packages?" $SSIZE); then
