@@ -40,6 +40,10 @@ fi
 
 if [ -f "$INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz" ]; then
 	tar xf $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz --directory $TEMP
+elif [ -f "$INSTALL_FILES/panoo-secrets.tar.gz" ]; then
+	tar xf $INSTALL_FILES/panoo-secrets.tar.gz --directory $TEMP
+elif [ -f "$INSTALL_FILES/../panoo-secrets.tar.gz" ]; then
+	tar xf $INSTALL_FILES/../panoo-secrets.tar.gz --directory $TEMP
 else
 	echo "cannot find $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz"
 	exit 1
