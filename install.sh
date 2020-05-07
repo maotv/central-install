@@ -44,7 +44,7 @@ else
 fi
 
 if [ "$UID" -eq 0 ]; then
-    $SUDO ./code/20-install-as-root.sh $ROOT || exit 1
+    /bin/bash ./code/20-install-as-root.sh $ROOT || exit 1
 else
     $SUDO ./code/21-install-as-user.sh $ROOT || exit 1
 fi
@@ -55,5 +55,5 @@ $SUDO ./code/40-panoo-etc.sh $ROOT || exit 1
 $SUDO ./code/50-install-keys.sh $ROOT || exit 1
 
 if [ "$UID" -eq 0 ]; then
-    $SUDO ./code/90-start-service.sh $ROOT || exit 1
+    /bin/bash ./code/90-start-service.sh $ROOT || exit 1
 fi
