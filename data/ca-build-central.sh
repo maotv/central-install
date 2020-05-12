@@ -4,8 +4,8 @@ if [ -z "$PANOO_ROOT" ]; then
 	echo "PANOO_ROOT is not set"
 	exit 1
 fi
-source $PANOO_ROOT/etc/panoo.sh
 
+source $PANOO_ROOT/etc/panoo.sh
 
 # 
 CA_HOME="$PANOO_ROOT/ca"
@@ -14,7 +14,7 @@ CA_HOME="$PANOO_ROOT/ca"
 DATE=`date +%Y%m%d-%H%M%S`
 
 # Hostname
-HOSTNAME="$PANOO_HOST"
+HOSTNAME="central"
 
 # Use panoo temp folder
 TARGET="$PANOO_ROOT/temp/SERVER-$DATE"
@@ -31,7 +31,8 @@ export CN=$HOSTNAME
 
 # Create the first key and the CSR:
 # openssl req -config server.cnf -new -out ${CA_HOME}/certreqs/${HOSTNAME}.req.pem
-openssl req -config server.cnf -new -out ${TARGET}/${HOSTNAME}.req.pem
+cp $PANOO_ROOT/etc/id_central $PANOO_ROOT/ca/private/central.key.pem
+openssl req -config server.cnf -key $PANOO_ROOT/etc/id_central -new -out ${TARGET}/${HOSTNAME}.req.pem
 
 
 openssl rand -hex 16 > ${CA_HOME}/temp/customer-ca.serial
@@ -46,17 +47,11 @@ openssl ca \
     -in ${TARGET}/${CN}.req.pem \
     -out ${CA_HOME}/certs/${CN}.cert.pem \
     -extensions server_ext
-# openssl ca \
-#     -batch \
-#     -config ${CA_HOME}/customer-ca.cnf \
-#     -in ${CA_HOME}/certreqs/${CN}.req.pem \
-#     -out ${CA_HOME}/certs/${CN}.cert.pem \
-#     -extensions server_ext
 
 
 
 # cp ${CN}.req.pem $MYDIR/intermediate/${AUTHORITY}-ca/certreqs/  
-cat  ${CA_HOME}/certs/${CN}.cert.pem  ${CA_HOME}/customer-ca.cert.pem  ${CA_HOME}/panoo-root-ca.cert.pem > ${CA_HOME}/certs/${CN}.keychain.pem
+cat  ${CA_HOME}/certs/${CN}.cert.pem  ${CA_HOME}/customer-ca.cert.pem  ${CA_HOME}/panoo-root-ca.cert.pem > ${CA_HOME}/certs/${CN}.chain.pem
 
 # cat $TARGET/server.cnf
 echo ""

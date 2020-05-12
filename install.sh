@@ -53,6 +53,7 @@ fi
 $SUDO ./code/30-unpack-central.sh $ROOT || exit 1
 $SUDO ./code/40-panoo-etc.sh $ROOT || exit 1
 $SUDO ./code/50-install-keys.sh $ROOT || exit 1
+$SUDO ./code/60-create-database.sh $ROOT || exit 1
 
 if [ "$UID" -eq 0 ]; then
     /bin/bash ./code/90-start-service.sh $ROOT || exit 1
