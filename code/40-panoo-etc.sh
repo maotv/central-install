@@ -20,6 +20,9 @@ if [ ! -f "$PANOO_ETC/id_central" ]; then
 	ssh-keygen -q -t rsa -b 2048 -m PEM -N "" -C "PanooCentral" -f "$PANOO_ETC/id_central"
 fi
 
+cp $INSTALL_ROOT/temp/secrets/id_install $PANOO_ETC
+cp $INSTALL_ROOT/temp/secrets/id_install.pub $PANOO_ETC
+
 cp $INSTALL_ROOT/data/config.template.json $TEMP/central.json
 
 sed -i -e "s|%%PANOO_ROOT%%|$PANOO_ROOT|" $TEMP/central.json
