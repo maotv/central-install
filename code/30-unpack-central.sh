@@ -31,15 +31,19 @@ else
 	exit 1
 fi
 
-if [ ! "$PANOO_INSTCODE" = "git" ]; then
-	if [ ! -f "$INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz" ]; then
-		curl https://panoo.com/download/central/panoo-secrets.$PANOO_INSTCODE.tar.gz --output $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz 2>&1 \
-			| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Downloading panoo-secrets.$PANOO_INSTCODE.tar.gz" 10 72 0
-	fi
-fi
+# if [ ! "$PANOO_INSTCODE" = "git" ]; then
+#	if [ ! -f "$INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz" ]; then
+#		curl https://panoo.com/download/central/panoo-secrets.$PANOO_INSTCODE.tar.gz --output $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz 2>&1 \
+#			| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Downloading panoo-secrets.$PANOO_INSTCODE.tar.gz" 10 72 0
+#	fi
+# fi
 
 if [ -f "$INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz" ]; then
 	tar xf $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz --directory $TEMP
+elif [ -f "$INSTALL_FILES/panoo-secrets.tar.gz" ]; then
+	tar xf $INSTALL_FILES/panoo-secrets.tar.gz --directory $TEMP
+elif [ -f "$INSTALL_FILES/../panoo-secrets.tar.gz" ]; then
+	tar xf $INSTALL_FILES/../panoo-secrets.tar.gz --directory $TEMP
 else
 	echo "cannot find $INSTALL_FILES/panoo-secrets.$PANOO_INSTCODE.tar.gz"
 	exit 1

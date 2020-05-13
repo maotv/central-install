@@ -16,6 +16,7 @@ WT="whiptail --backtitle PanooCentral"
 
 # secrets are unpacked in step 30-unpack-central
 SECRETS="$TEMP/secrets"
+source $SECRETS/about.sh
 
 PANOO_CA="$PANOO_ROOT/ca"
 mkdir -p "$PANOO_CA"
@@ -33,15 +34,19 @@ mkdir -p "$PANOO_CA/bin"
 cp "$INST/data/ca-build-server.sh" "$PANOO_CA/bin"
 chmod 755 "$INST/data/ca-build-server.sh"
 
-cp "$SECRETS/customer-ca.cert.pem" "$PANOO_CA"
-cp "$SECRETS/customer-ca.key.pem" "$PANOO_CA/private"
+cp "$INST/data/ca-build-central.sh" "$PANOO_CA/bin"
+chmod 755 "$INST/data/ca-build-central.sh"
+
+cp "$SECRETS/$PANOO_CUSTOMER-ca.cert.pem" "$PANOO_CA/customer-ca.cert.pem"
+cp "$SECRETS/$PANOO_CUSTOMER-ca.key.pem" "$PANOO_CA/private/customer-ca.key.pem"
 cp "$INST/data/customer-ca.cnf" "$PANOO_CA/customer-ca.cnf"
 cp "$INST/data/server.template.cnf" "$PANOO_CA/server.template.cnf"
 
-sed -i "s|%%PANOO_CUSTOMER%%|xxxxxxxxxxcustomerxxxxxxxxx|" $PANOO_CA/customer-ca.cnf
+sed -i -e "s|%%PANOO_CUSTOMER%%|$PANOO_CUSTOMER|" $PANOO_CA/customer-ca.cnf
 
 echo "Panoo Root is $PANOO_ROOT"
 export PANOO_ROOT=$PANOO_ROOT
+$PANOO_CA/bin/ca-build-central.sh "$PANOO_ROOT"
 $PANOO_CA/bin/ca-build-server.sh "$PANOO_ROOT"
 
 exit 0
