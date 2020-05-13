@@ -34,7 +34,7 @@ echo "User=$PANOO_USER" >> $SERVICE
 echo "# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'" >> $SERVICE
 echo "Group=nogroup" >> $SERVICE
 echo "Environment=PATH=/usr/bin:/usr/local/bin:/bin" >> $SERVICE
-echo "#Environment=NODE_ENV=production" >> $SERVICE
+echo "Environment=PANOO_ROOT=$PANOO_ROOT" >> $SERVICE
 echo "WorkingDirectory=$PANOO_ROOT/central" >> $SERVICE
 echo "[Install]" >> $SERVICE
 echo "WantedBy=multi-user.target" >> $SERVICE
