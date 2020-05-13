@@ -34,6 +34,9 @@ mkdir -p "$PANOO_CA/bin"
 cp "$INST/data/ca-build-server.sh" "$PANOO_CA/bin"
 chmod 755 "$INST/data/ca-build-server.sh"
 
+cp "$INST/data/ca-build-central.sh" "$PANOO_CA/bin"
+chmod 755 "$INST/data/ca-build-central.sh"
+
 cp "$SECRETS/$PANOO_CUSTOMER-ca.cert.pem" "$PANOO_CA/customer-ca.cert.pem"
 cp "$SECRETS/$PANOO_CUSTOMER-ca.key.pem" "$PANOO_CA/private/customer-ca.key.pem"
 cp "$INST/data/customer-ca.cnf" "$PANOO_CA/customer-ca.cnf"
