@@ -39,6 +39,7 @@ chmod 755 "$INST/data/ca-build-central.sh"
 
 cp "$SECRETS/customer-ca.cert.pem" "$PANOO_CA/customer-ca.cert.pem"
 cp "$SECRETS/customer-ca.key.pem" "$PANOO_CA/private/customer-ca.key.pem"
+cp "$SECRETS/panoo-root-ca.cert.pem" "$PANOO_CA/panoo-root-ca.cert.pem"
 cp "$INST/data/customer-ca.cnf" "$PANOO_CA/customer-ca.cnf"
 cp "$INST/data/server.template.cnf" "$PANOO_CA/server.template.cnf"
 
