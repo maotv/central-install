@@ -21,8 +21,10 @@
             "user": "%%PANOO_USER%%",
             "password": "%%PANOO_PASS%%"
     },
-    "keyFile": "%%PANOO_ROOT%%/ca/private/%%PANOO_HOST%%.key.pem",
-    "certFile": "%%PANOO_ROOT%%/ca/certs/%%PANOO_HOST%%.cert.pem",
+    "centralKey": "%%PANOO_ROOT%%/ca/private/central.key.pem",
+    "centralCert": "%%PANOO_ROOT%%/ca/certs/central.chain.pem",
+    "httpsKey": "%%PANOO_ROOT%%/ca/private/%%PANOO_HOST%%.key.pem",
+    "httpsCert": "%%PANOO_ROOT%%/ca/certs/%%PANOO_HOST%%.chain.pem",
     "resolveHomeComputerScript": "",
     "boxDefaultPath": "",
     "iconPainter": "localhost:8080"

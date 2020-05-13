@@ -56,7 +56,7 @@ openssl ca \
 
 
 # cp ${CN}.req.pem $MYDIR/intermediate/${AUTHORITY}-ca/certreqs/  
-cat  ${CA_HOME}/certs/${CN}.cert.pem  ${CA_HOME}/customer-ca.cert.pem  ${CA_HOME}/panoo-root-ca.cert.pem > ${CA_HOME}/certs/${CN}.keychain.pem
+cat  ${CA_HOME}/certs/${CN}.cert.pem  ${CA_HOME}/customer-ca.cert.pem  ${CA_HOME}/panoo-root-ca.cert.pem > ${CA_HOME}/certs/${CN}.chain.pem
 
 # cat $TARGET/server.cnf
 echo ""
