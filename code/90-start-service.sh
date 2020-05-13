@@ -44,4 +44,5 @@ chmod 644 /etc/systemd/system/panoo-central.service
 
 
 $WT --msgbox "PanooCentral is ready to go." 20 78
+systemctl enable panoo-central
 systemctl start panoo-central
