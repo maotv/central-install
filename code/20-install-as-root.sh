@@ -70,15 +70,15 @@ NODE_VERSION="v12.16.2"
 NODE_IDENT="node-$NODE_VERSION-linux-x64"
 NODE_URL="https://nodejs.org/dist/$NODE_VERSION/$NODE_IDENT.tar.gz"
 
-if [ ! -f $TEMP/files/$NODE_IDENT.tar.gz ]; then
-	curl $NODE_URL --output $TEMP/files/$NODE_IDENT.tar.gz 2>&1 \
+if [ ! -f $INSTALL_FILES/$NODE_IDENT.tar.gz ]; then
+	curl $NODE_URL --output $INSTALL_FILES/$NODE_IDENT.tar.gz 2>&1 \
 		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Progress" 20 64 0
 fi
 
 mkdir -p $PANOO_ROOT/node
 
 if [ ! -d $PANOO_ROOT/node/$NODE_IDENT ]; then
-	tar xfz $TEMP/files/$NODE_IDENT.tar.gz --directory $PANOO_ROOT/node
+	tar xfz $INSTALL_FILES/$NODE_IDENT.tar.gz --directory $PANOO_ROOT/node
 fi
 
 rm -f $PANOO_ROOT/node/current
