@@ -8,6 +8,7 @@
             "sender": "PanooCentral <central@panoo.tv>",
             "user": "%%PANOO_MAILUSER%%",
             "pass": "%%PANOO_MAILPASS%%",
+	    "secure": true,
             "smtp": {
                     "host": "email-smtp.eu-central-1.amazonaws.com",
                     "port": 465
