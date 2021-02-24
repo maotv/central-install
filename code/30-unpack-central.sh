@@ -19,10 +19,11 @@ if [ "$PANOO_INSTCODE" = "git" ]; then
 fi
 
 
-if [ ! -f "$INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz" ]; then
-	curl https://panoo.com/download/central/panoo-central.$PANOO_INSTCODE.tar.gz --output $INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz 2>&1 \
-		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Downloading panoo-central.$PANOO_INSTCODE.tar.gz" 10 72 0
-fi
+#if [ ! -f "$INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz" ]; then
+#	echo "Download https://panoo.com/download/central/panoo-central.$PANOO_INSTCODE.tar.gz => $INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz"
+#	(curl https://panoo.com/download/central/panoo-central.$PANOO_INSTCODE.tar.gz --output $INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz) 2>&1 \
+#		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Downloading panoo-central.$PANOO_INSTCODE.tar.gz" 10 72 0
+#fi
 
 if [ -f "$INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz" ]; then
 	tar xf $INSTALL_FILES/panoo-central.$PANOO_INSTCODE.tar.gz --directory $PANOO_ROOT
@@ -51,23 +52,4 @@ fi
 
 
 
-
-
-
-
-
-
-# # http://deploy.maongo.com/panoo-central.1.0.0.zip 
-
-# # download to temp
-# # curl https://panoo.com/download/central/panoo-central.aii992.tar.gz --output temp/central.tgz
-# mkdir -p $TEMP/files
-
-# if [ ! -f $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz ]; then
-# 	curl https://panoo.com/download/central/panoo-central.$PANOO_INSTCODE.tar.gz --output $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz 2>&1 \
-# 		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Progress" 20 64 0
-# fi
-
-# # extract 'central' directory into PANOO_ROOT
-# tar xf $TEMP/files/panoo-central.$PANOO_INSTCODE.tar.gz --directory $PANOO_ROOT
 

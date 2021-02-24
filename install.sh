@@ -37,6 +37,9 @@ cat $ROOT/data/defaults.sh >> $TEMP/defaults.sh
 bash $ROOT/code/10-write-config.sh "$ROOT" "$INSTALL_FILES" || exit 1
 source $ROOT/temp/panoo.sh
 
+LOGNAME=`logname`
+sudo -u $LOGNAME bash $ROOT/code/12-downloads.sh "$ROOT" "$INSTALL_FILES" || exit 1
+
 if [ "$UID" -eq 0 ]; then
     SUDO="sudo -u $PANOO_USER /bin/bash"
 else

@@ -66,14 +66,14 @@ fi
 # node.js & npm
 #
 # =============================================================
-NODE_VERSION="v12.16.2"
+# NODE_VERSION is in panoo.sh NODE_VERSION="v12.16.2"
 NODE_IDENT="node-$NODE_VERSION-linux-x64"
 NODE_URL="https://nodejs.org/dist/$NODE_VERSION/$NODE_IDENT.tar.gz"
 
-if [ ! -f $INSTALL_FILES/$NODE_IDENT.tar.gz ]; then
-	curl $NODE_URL --output $INSTALL_FILES/$NODE_IDENT.tar.gz 2>&1 \
-		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Progress" 20 64 0
-fi
+#if [ ! -f $INSTALL_FILES/$NODE_IDENT.tar.gz ]; then
+#	curl $NODE_URL --output $INSTALL_FILES/$NODE_IDENT.tar.gz 2>&1 \
+#		| stdbuf -o0 tr "\r" "\n" | stdbuf -o0 cut -c-3 | whiptail --gauge "Progress" 20 64 0
+#fi
 
 mkdir -p $PANOO_ROOT/node
 
