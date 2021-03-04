@@ -21,7 +21,8 @@ if [ ! -f "$PANOO_ETC/id_central" ]; then
 fi
 
 cp $INSTALL_ROOT/temp/secrets/id_install $PANOO_ETC
-cp $INSTALL_ROOT/temp/secrets/id_install.pub $PANOO_ETC
+#cp $INSTALL_ROOT/temp/secrets/id_install.pub $PANOO_ETC
+ssh-keygen -y -f $INSTALL_ROOT/temp/secrets/id_install > $PANOO_ETC/id_install.pub
 
 cp $INSTALL_ROOT/data/config.template.json $TEMP/central.json
 cp $INSTALL_ROOT/data/empty_array.json $PANOO_ETC/box_versions.json
