@@ -44,7 +44,7 @@ else
     exit 1
 fi
 
-PANOO_HOST=$($WT $NEXTEXIT --inputbox "The PanooCentral Hostname or IP-Address" 10 78 "$PANOO_HOST" 3>&1 1>&2 2>&3)
+PANOO_HOST=$($WT $NEXTEXIT --inputbox "The PanooCentral Hostname (must be fully qualified)" 10 78 "$PANOO_HOST" 3>&1 1>&2 2>&3)
 if [ $? -eq 0 ]; then
     echo "User selected Ok and entered $PANOO_HOST"
 else
