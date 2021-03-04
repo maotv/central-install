@@ -28,6 +28,11 @@
     "httpsCert": "%%PANOO_ROOT%%/ca/certs/%%PANOO_HOST%%.chain.pem",
     "resolveHomeComputerScript": "",
     "boxDefaultPath": "",
-    "iconPainter": "localhost:8080"
+    "iconPainter": "localhost:8080",
+    "defaultBoxJson": {
+        "apiroot": "https://%%PANOO_HOST%%:8089",
+        "boxmode": "box",
+        "managed": true
+    }
 }
 
