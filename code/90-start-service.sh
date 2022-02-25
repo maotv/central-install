@@ -14,12 +14,19 @@ source $TEMP/panoo.sh
 
 WT="whiptail --backtitle PanooCentral"
 
+# =============================================================
+#
+# Cronjob
+#
+# =============================================================
 
-
+line="0 6 * * * export PANOO_ROOT=$PANOO_ROOT && cd $PANOO_ROOT/central && /usr/bin/node $PANOO_ROOT/central/utils/sendReport.js"
+(crontab -u $(whoami) -l; echo "$line" ) | crontab -u $(whoami) -
 
 # =============================================================
 #
 # Service
+# Panoo Central
 #
 # =============================================================
 SERVICE="$TEMP/panoo-central.service"
@@ -46,3 +53,31 @@ chmod 644 /etc/systemd/system/panoo-central.service
 $WT --msgbox "PanooCentral is ready to go." 20 78
 systemctl enable panoo-central
 systemctl start panoo-central
+
+# =============================================================
+#
+# Service
+# Icon Painter
+#
+# =============================================================
+SERVICE="$TEMP/panoo-icon-painter.service"
+
+echo "[Unit]" > $SERVICE
+echo "Description=Panoo Icon Painter" >> $SERVICE
+echo "" >> $SERVICE
+echo "[Service]" >> $SERVICE
+echo "ExecStart=$PANOO_ROOT/central/bin/icon-painter" >> $SERVICE
+echo "Restart=always" >> $SERVICE
+echo "User=$PANOO_USER" >> $SERVICE
+echo "# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'" >> $SERVICE
+echo "Group=nogroup" >> $SERVICE
+echo "[Install]" >> $SERVICE
+echo "WantedBy=multi-user.target" >> $SERVICE
+
+cp "$TEMP/panoo-icon-painter.service" "/etc/systemd/system/panoo-icon-painter.service"
+chmod 644 /etc/systemd/system/panoo-icon-painter.service
+
+
+$WT --msgbox "PanooCentral is ready to go." 20 78
+systemctl enable panoo-icon-painter
+systemctl start panoo-icon-painter
