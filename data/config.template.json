@@ -2,13 +2,19 @@
     "panooRoot": "%%PANOO_ROOT%%",
     "port": 8088,
     "sslPort": 8089,
+    "centralName": "%%PANOO_INSTANCE%%",
     "centralHost": "%%PANOO_HOST%%",
     "ntpServer": "%%PANOO_HOST%%",
+    "centralColor": "green",
+    "centralGuid": "ABCD2022",
+    "centralDescription": "A Panoo Central",
     "mail": {
+            "reportAddress": "report@panoo.com",
             "sender": "PanooCentral <central@panoo.tv>",
             "user": "%%PANOO_MAILUSER%%",
             "pass": "%%PANOO_MAILPASS%%",
 	    "secure": true,
+            "ignoreTLSRejectUnauthorized": false,
             "smtp": {
                     "host": "email-smtp.eu-central-1.amazonaws.com",
                     "port": 465
@@ -24,6 +30,7 @@
     },
     "centralKey": "%%PANOO_ROOT%%/ca/private/central.key.pem",
     "centralCert": "%%PANOO_ROOT%%/ca/certs/central.chain.pem",
+    "centralPub": "%%PANOO_ROOT%%/etc/id_central.pub.pem",
     "httpsKey": "%%PANOO_ROOT%%/ca/private/%%PANOO_HOST%%.key.pem",
     "httpsCert": "%%PANOO_ROOT%%/ca/certs/%%PANOO_HOST%%.chain.pem",
     "resolveHomeComputerScript": "",

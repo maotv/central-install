@@ -21,7 +21,10 @@ WT="whiptail --backtitle PanooCentral"
 # =============================================================
 
 line="0 6 * * * export PANOO_ROOT=$PANOO_ROOT && cd $PANOO_ROOT/central && /usr/bin/node $PANOO_ROOT/central/utils/sendReport.js"
-(crontab -u $(whoami) -l; echo "$line" ) | crontab -u $(whoami) -
+(crontab -u $PANOO_USER -l; echo "$line" ) | crontab -u $PANOO_USER -
+
+backupline="0 4 * * * bash /panoo/central/bin/dbbackup.sh"
+(crontab -u root -l; echo "$backupline" ) | crontab -u root -
 
 # =============================================================
 #
