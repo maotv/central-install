@@ -11,5 +11,5 @@ INST=$INSTALL_ROOT
 TEMP=$INSTALL_ROOT/temp
 source $TEMP/panoo.sh
 
-#$PANOO_ROOT/central/database/freshdb.sh $TEMP/panoo.sh
-node $PANOO_ROOT/central/database/freshdb.js
+$PANOO_ROOT/central/database/freshdb.sh $TEMP/panoo.sh
+#node $PANOO_ROOT/central/database/freshdb.js
